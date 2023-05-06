@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+const puppeteer = require('puppeteer');
 
 async function login(user, pass, url) {
   const browser = await puppeteer.launch({ headless: true });
@@ -40,12 +40,11 @@ async function scrappFromUserInfoDiv(user, pass, url) {
   return userInfo;
 }
 
-export async function jumboScrapper(user, pass) {
+const jumboScrapper = async (user, pass) => {
   const url = 'https://www.jumbo.cl/login-page?callback=/mis-datos';
   const userInfo = await scrappFromUserInfoDiv(user, pass, url);
   console.info(userInfo)
   return userInfo;
 }
 
-
-scrappFromUserInfoDiv("miguel_z94@hotmail.com", "RHKY7ifA77qdPpT", "https://www.jumbo.cl/login-page?callback=/mis-datos")
+module.exports = jumboScrapper;
